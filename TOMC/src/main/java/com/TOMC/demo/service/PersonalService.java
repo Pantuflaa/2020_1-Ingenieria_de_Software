@@ -50,4 +50,11 @@ public class PersonalService{
     public List<Personal> getAll(){
         return repository.findAll();
     }
+
+	public List<Personal> getByType(int tipoPersonal){
+        return repository.findByTipoPersonal(tipoPersonal);
+	}
+	public List<Personal> getByDisponibilidad(Boolean disponibilidad){
+        return repository.findByDisponibilidad(disponibilidad);
+    }
 }
