@@ -8,6 +8,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
+
 @Table(name="Personal")
 @Entity
 public class Personal{
@@ -32,6 +34,12 @@ public class Personal{
     @Column(name="mail")
     String mail;
 
+	@Column(name="profesion")
+    String profesion;
+
+	@Column(name="especializacion")
+    String especializacion;
+
     @Column(name="tipo_personal")
     int tipoPersonal;
 
@@ -42,7 +50,7 @@ public class Personal{
 
 	}
 
-	public Personal(long id, String rut, String nombre, String apellido, String numero, String mail, int tipoPersonal, boolean disponibilidad){
+	public Personal(long id, String rut, String nombre, String apellido, String numero, String mail, String profesion, String especializacion, int tipoPersonal, boolean disponibilidad){
 		
 	}
 
@@ -108,5 +116,21 @@ public class Personal{
 
 	public void setDisponibilidad(boolean disponibilidad){
 		this.disponibilidad = disponibilidad;
+	}
+
+	public String getEspecializacion() {
+		return especializacion;
+	}
+
+	public String getProfesion() {
+		return profesion;
+	}
+
+	public void setEspecializacion(String especializacion) {
+		this.especializacion = especializacion;
+	}
+
+	public void setProfesion(String profesion) {
+		this.profesion = profesion;
 	}
 }

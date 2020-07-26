@@ -26,8 +26,8 @@ public class PersonalController{
     @Qualifier("servicepersonal")
     PersonalService service;
 
-    @GetMapping("/personal")
-    public Personal getPersonal(@RequestParam(name="id", required=true) long id){
+    @GetMapping("/personal/{id}")
+    public Personal getPersonal(@PathVariable("id") long id){
         return service.getByID(id);
     }
 
@@ -49,5 +49,15 @@ public class PersonalController{
     @GetMapping("/getAll")
     public List<Personal> getAllPersonal(){
         return service.getAll();
+    }
+
+    @GetMapping("/personal/tipo/{tipoPersonal}")
+    public List<Personal> getByTipoPersonal(@PathVariable("tipoPersonal") int tipoPersonal){
+        return service.getByType(tipoPersonal);
+    }
+    
+    @GetMapping("/personal/disp/{disponibilidad}")
+    public List<Personal> getByDisponibilidad(@PathVariable("disponibilidad") boolean disponibilidad){
+        return service.getByDisponibilidad(disponibilidad);
     }
 }
