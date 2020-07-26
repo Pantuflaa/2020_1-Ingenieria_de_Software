@@ -32,18 +32,63 @@ public class PersonalController{
     }
 
     @PostMapping("/personal")
-    public boolean addPersonal(@RequestBody @Valid Personal personal){
-        return service.addPersonal(personal);
+    public String addPersonal(@RequestBody @Valid Personal personal){
+        if(faltanCampos(personal))
+        {
+            if(personal.getTipoPersonal() < 0 || personal.getTipoPersonal() > 4 || !verificarRut(personal.getRut()))
+            {
+                return "Personal incorrecto";
+            }
+
+            if(service.addPersonal(personal))
+            {
+                return "Personal guardado";
+            }
+            else
+            {
+                return "Personal incorrecto";
+            }
+        }
+        else
+        {
+            return "Persona con campos faltantes";
+        }
     }
 
     @PutMapping("/personal")
-    public boolean updatePersonal(@RequestBody @Valid Personal personal){
-        return service.updatePersonal(personal);
+    public String updatePersonal(@RequestBody @Valid Personal personal){
+        if(faltanCampos(personal))
+        {
+            if(personal.getTipoPersonal() < 0 || personal.getTipoPersonal() > 4 || !verificarRut(personal.getRut()))
+            {
+                return "Personal incorrecto";
+            }
+
+            if(service.updatePersonal(personal))
+            {
+                return "Personal actualizado";
+            }
+            else
+            {
+                return "Personal incorrecto";
+            }
+        }
+        else
+        {
+            return "Personal con campos vacios";
+        }
     }
 
     @DeleteMapping("/personal/{id}")
-    public boolean deletePersonal(@PathVariable("id") long id){
-        return service.deletePersonal(id);
+    public String deletePersonal(@PathVariable("id") long id){
+        if(service.deletePersonal(id))
+        {
+            return "Personal eliminado";
+        }
+        else
+        {
+            return "Personal no existente";
+        }
     }
 
     @GetMapping("/getAll")
@@ -57,7 +102,36 @@ public class PersonalController{
     }
     
     @GetMapping("/personal/disp/{disponibilidad}")
-    public List<Personal> getByDisponibilidad(@PathVariable("disponibilidad") boolean disponibilidad){
+    public List<Personal> getByDisponibilidad(@PathVariable("disponibilidad") Boolean disponibilidad){
         return service.getByDisponibilidad(disponibilidad);
+    }
+
+    public boolean faltanCampos(Personal personal){
+        return personal.getNombre() != null && personal.getRut() != null && personal.getApellido() != null && personal.getNumero() != null && personal.getMail() != null && personal.getTipoPersonal() != 0 && personal.getDisponibilidad() != null && personal.getEspecializacion() != null && personal.getProfesion() != null;
+    }
+
+    public boolean verificarRut(String rut){
+        int len = rut.length();
+        int num = 2;
+        int suma = 0;
+        for(int i = len-3; i >= 0; --i)
+        {
+            suma = suma + num * (rut.charAt(i) - '0');
+            num++;
+            if(num > 7) num = 2;
+        }
+        suma = suma % 11;
+        suma = 11 - suma;
+        if(suma == 11) suma = 0;
+        if(suma == 10) suma = 'k' - '0';
+
+        if(suma != (rut.charAt(len - 1) - '0'))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }

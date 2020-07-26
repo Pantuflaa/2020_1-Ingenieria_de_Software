@@ -54,7 +54,7 @@ public class PersonalService{
 	public List<Personal> getByType(int tipoPersonal){
         return repository.findByTipoPersonal(tipoPersonal);
 	}
-	public List<Personal> getByDisponibilidad(boolean disponibilidad){
+	public List<Personal> getByDisponibilidad(Boolean disponibilidad){
         return repository.findByDisponibilidad(disponibilidad);
     }
 }

@@ -44,13 +44,13 @@ public class Personal{
     int tipoPersonal;
 
     @Column(name="disponibilidad")
-    boolean disponibilidad;
+    Boolean disponibilidad;
 
 	public Personal(){
 
 	}
 
-	public Personal(long id, String rut, String nombre, String apellido, String numero, String mail, String profesion, String especializacion, int tipoPersonal, boolean disponibilidad){
+	public Personal(long id, String rut, String nombre, String apellido, String numero, String mail, String profesion, String especializacion, int tipoPersonal, Boolean disponibilidad){
 		
 	}
 
@@ -110,11 +110,11 @@ public class Personal{
 		this.tipoPersonal = tipoPersonal;
 	}
 
-	public boolean getDisponibilidad(){
+	public Boolean getDisponibilidad(){
 		return this.disponibilidad;
 	}
 
-	public void setDisponibilidad(boolean disponibilidad){
+	public void setDisponibilidad(Boolean disponibilidad){
 		this.disponibilidad = disponibilidad;
 	}
 
