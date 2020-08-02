@@ -14,11 +14,6 @@ import jdk.nashorn.internal.objects.annotations.Getter;
 @Entity
 public class Personal{
 	@Id
-	@GenericGenerator(name="incrementpersonal", strategy="increment")
-    @GeneratedValue(generator="incrementpersonal")
-    @Column(name="id_personal")
-    long id;
-
     @Column(name="rut")
     String rut;
 
@@ -50,16 +45,8 @@ public class Personal{
 
 	}
 
-	public Personal(long id, String rut, String nombre, String apellido, String numero, String mail, String profesion, String especializacion, int tipoPersonal, Boolean disponibilidad){
+	public Personal(String rut, String nombre, String apellido, String numero, String mail, String profesion, String especializacion, int tipoPersonal, Boolean disponibilidad){
 		
-	}
-
-	public long getId(){
-		return this.id;
-	}
-
-	public void setId(long id){
-		this.id = id;
 	}
 
 	public String getRut(){

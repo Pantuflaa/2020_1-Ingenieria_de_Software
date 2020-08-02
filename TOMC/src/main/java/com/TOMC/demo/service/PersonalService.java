@@ -33,9 +33,9 @@ public class PersonalService{
     	}
     }
 
-    public boolean deletePersonal(long id){
+    public boolean deletePersonal(String rut){
     	try{
-    		Personal personal = repository.findById(id);
+    		Personal personal = repository.findByRut(rut);
     		repository.delete(personal);
     		return true;
     	} catch (Exception e){
@@ -43,8 +43,8 @@ public class PersonalService{
         }
     }
 
-    public Personal getByID(long id){
-    	return repository.findById(id);
+    public Personal getByRut(String rut){
+    	return repository.findByRut(rut);
     }
 
     public List<Personal> getAll(){

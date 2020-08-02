@@ -26,12 +26,12 @@ public class PersonalController{
     @Qualifier("servicepersonal")
     PersonalService service;
 
-    @GetMapping("/personal/{id}")
-    public Personal getPersonal(@PathVariable("id") long id){
-        return service.getByID(id);
+    @GetMapping("{rut}")
+    public Personal getPersonal(@PathVariable("rut") String rut){
+        return service.getByRut(rut);
     }
 
-    @PostMapping("/personal")
+    @PostMapping("")
     public String addPersonal(@RequestBody @Valid Personal personal){
         if(faltanCampos(personal))
         {
@@ -55,7 +55,7 @@ public class PersonalController{
         }
     }
 
-    @PutMapping("/personal")
+    @PutMapping("")
     public String updatePersonal(@RequestBody @Valid Personal personal){
         if(faltanCampos(personal))
         {
@@ -79,9 +79,9 @@ public class PersonalController{
         }
     }
 
-    @DeleteMapping("/personal/{id}")
-    public String deletePersonal(@PathVariable("id") long id){
-        if(service.deletePersonal(id))
+    @DeleteMapping("/{rut}")
+    public String deletePersonal(@PathVariable("rut") String rut){
+        if(service.deletePersonal(rut))
         {
             return "Personal eliminado";
         }
@@ -96,12 +96,12 @@ public class PersonalController{
         return service.getAll();
     }
 
-    @GetMapping("/personal/tipo/{tipoPersonal}")
+    @GetMapping("/tipo/{tipoPersonal}")
     public List<Personal> getByTipoPersonal(@PathVariable("tipoPersonal") int tipoPersonal){
         return service.getByType(tipoPersonal);
     }
     
-    @GetMapping("/personal/disp/{disponibilidad}")
+    @GetMapping("/disp/{disponibilidad}")
     public List<Personal> getByDisponibilidad(@PathVariable("disponibilidad") Boolean disponibilidad){
         return service.getByDisponibilidad(disponibilidad);
     }

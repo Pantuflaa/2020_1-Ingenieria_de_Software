@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository("repositorypersonal")
 public interface PersonalRepository extends JpaRepository<Personal, Serializable>{
     
-    public abstract Personal findById(long id);
+    public abstract Personal findByRut(String rut);
     public abstract List<Personal> findByTipoPersonal(int tipoPersonal);
     public abstract List<Personal> findByDisponibilidad(boolean disponibilidad);
     public abstract List<Personal> findAll();
