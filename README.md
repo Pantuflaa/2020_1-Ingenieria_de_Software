@@ -2,7 +2,7 @@
 
 Proyecto realizado primer semestre 2020 para la Universidad Técnica Federico Santa María. Corresponde a una API realizada en springboot.
 
-# API
+# API - Personal
 
 ### Personal
 
@@ -87,6 +87,66 @@ Donde:
 * Acción: Borrar un personal por rut
 * Argumento: rut
 * Respuesta: string, que dice sise borro o no
+
+# API - PersonalSillon
+
+
+### Personal
+
+A través de esta API se manejan datos de personal que siguen la siguiente estructura:
+
+```
+{
+  id: long,
+  rut: string,
+  idsillon: long
+}
+```
+
+* id es un entero representando union rut e idsillon
+* rut es el rut del medico asociado a ese sillon de la forma "11111111-1"
+* idsillon es la id del sillon
+
+### POST
+
+* Link: https://tomcs.herokuapp.com/v1/personalsillon/
+* VerboHTTP: POST
+* Acción: Almacenar un personalsillon
+* Cuerpo: personalsillon
+* Respuesta: true o false
+
+### PUT
+
+* Link: https://tomcs.herokuapp.com/v1/personalsillon/
+* VerboHTTP: PUT
+* Acción: Actualizar un personalsillon
+* Cuerpo: personalsillon
+* Respuesta: true o false
+
+### GET
+
+#### Por id
+
+* Link: https://tomcs.herokuapp.com/v1/personal/{id}
+* VerboHTTP: GET
+* Acción: Obtener un personalsillon por id
+* Argumento: id
+* Respuesta: personalsillon
+
+#### Todo personalsillon
+
+* Link: https://tomcs.herokuapp.com/v1/personal/getAll
+* VerboHTTP: GET
+* Acción: Obtener todo el personalsillon
+* Respuesta: lista de personalsillon
+
+### DELETE
+
+* Link: https://tomcs.herokuapp.com/v1/personal/{id}
+* VerboHTTP: DELETE
+* Acción: Borrar un personalsillon por id
+* Argumento: id
+* Respuesta: true o false
 
 # Proyecto Ingeniería de Software
 
